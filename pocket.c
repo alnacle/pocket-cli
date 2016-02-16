@@ -99,7 +99,7 @@ char *pocket_get_token(const char *key) {
 
   string_init(&s);
 
-  CURLcode c = request(URL_REQUEST, create_request_petition(key), &s, 0);
+  request(URL_REQUEST, create_request_petition(key), &s, 0);
 
   response = json_tokener_parse(s.ptr);
   json_object_object_get_ex(response, "code", &response);
@@ -121,7 +121,7 @@ void pocket_get(const char *key, const char *token) {
   curl_global_init(CURL_GLOBAL_ALL);
   string_init(&s);
 
-  CURLcode c = request(URL_RETRIEVE, get_auth(key, token), &s, 0);
+  request(URL_RETRIEVE, get_auth(key, token), &s, 0);
 
   string_cleanup(&s);
   curl_global_cleanup();

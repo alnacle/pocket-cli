@@ -1,6 +1,6 @@
-CC=gcc 
+CC=cc 
 
-CFLAGS += -g
+CFLAGS += -std=c99 -pedantic -Wall -Os
 CFLAGS += $(shell pkg-config --cflags libcurl)
 CFLAGS += $(shell pkg-config --cflags json-c)
 
