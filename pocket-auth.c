@@ -39,10 +39,11 @@ int main(int argc, char **argv)
         die("Error when creating config.h file!\n");
     }
     fprintf(config, "#pragma once\n\n"
-           "#define KEY   \"%s\"\n"
-           "#define TOKEN \"%s\"\n\n", key, access_token);
+           "#define POCKET_KEY   \"%s\"\n"
+           "#define POCKET_TOKEN \"%s\"\n\n", key, access_token);
 
     fclose(config);
-
+    
+    printf(" config.h file successfully created. Continue with 'make pocket-cli'\n\n");
     pocket_clean();
 }

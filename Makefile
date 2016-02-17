@@ -10,7 +10,7 @@ LDFLAGS += $(shell pkg-config --libs json-c)
 OBJECTS = pocket.o utils.o string.o 
 TARGETS = pocket-cli pocket-auth 
 
-all: $(TARGETS)
+all: pocket-auth
 
 pocket-cli: $(OBJECTS) pocket-cli.o
 	$(CC) $^ -o $@ $(LDFLAGS)
