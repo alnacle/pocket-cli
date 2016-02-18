@@ -4,14 +4,15 @@
 /* URL to be called when the authorization process has been completed */
 #define REDIRECT_URI "https://github.com/anavarro/pocket-cli"
 
-/* Pocket API */
-#define URL_REQUEST   "https://getpocket.com/v3/oauth/request"
-#define URL_AUTHORIZE "https://getpocket.com/v3/oauth/authorize"
-#define URL_GET       "https://getpocket.com/v3/get"
-#define URL_ADD       "https://getpocket.com/v3/add"
+#define POCKET_URL    "https://getpocket.com/v3"
 
+/* Pocket API */
+#define URL_REQUEST   POCKET_URL "/oauth/request"
+#define URL_AUTHORIZE POCKET_URL "/oauth/authorize"
+#define URL_GET       POCKET_URL "/get"
+#define URL_ADD       POCKET_URL "/add"
 /* authorize application's request token */
-#define URL_AUTH "https://getpocket.com/auth/authorize"
+#define URL_AUTH      POCKET_URL "/auth/authorize"
 
 /* use JSON for the requests */
 #define HDR_CONTENT_TYPE "Content-Type: application/json; charset=UTF-8"

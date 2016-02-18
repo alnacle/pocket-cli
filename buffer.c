@@ -1,9 +1,9 @@
 #include <stdlib.h>
 
-#include "string.h"
+#include "buffer.h"
 #include "utils.h"
 
-void string_init(struct string *s) 
+void buffer_init(struct buffer *s) 
 {
     s->len = 0;
     s->ptr = malloc(s->len + 1);
@@ -13,7 +13,7 @@ void string_init(struct string *s)
     s->ptr[0] = '\0';
 }
 
-void string_cleanup(struct string *s) 
+void buffer_cleanup(struct buffer *s) 
 {
     if (s->ptr) {
         free(s->ptr);

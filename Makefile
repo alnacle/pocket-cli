@@ -7,7 +7,7 @@ CFLAGS += $(shell pkg-config --cflags json-c)
 LDFLAGS += $(shell pkg-config --libs libcurl)
 LDFLAGS += $(shell pkg-config --libs json-c)
 
-OBJECTS = pocket.o utils.o string.o 
+OBJECTS = pocket.o utils.o buffer.o 
 TARGETS = pocket-cli pocket-auth 
 
 all: pocket-auth

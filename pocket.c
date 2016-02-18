@@ -6,10 +6,10 @@
 #include <json.h>
 
 #include "pocket.h"
-#include "string.h"
+#include "buffer.h"
 #include "utils.h"
 
-size_t writefunc(void *ptr, size_t size, size_t nmemb, struct string *s) 
+size_t writefunc(void *ptr, size_t size, size_t nmemb, struct buffer *s) 
 {
     size_t new_len = s->len + size * nmemb;
     s->ptr = realloc(s->ptr, new_len + 1);
@@ -64,7 +64,7 @@ char *create_auth_petition(const char *key, const char *token)
     return petition;
 }
 
-CURLcode request(const char *url, const char *params, struct string *result,
+CURLcode request(const char *url, const char *params, struct buffer *result,
         int debug) 
 {
     CURL *curl = curl_easy_init();
@@ -104,11 +104,11 @@ void pocket_clean(void)
 
 char *pocket_get_token(const char *key) 
 {
-    struct string s;
+    struct buffer s;
     json_object *response;
     char *token;
 
-    string_init(&s);
+    buffer_init(&s);
 
     request(URL_REQUEST, create_request_petition(key), &s, 0);
 
@@ -117,18 +117,18 @@ char *pocket_get_token(const char *key)
     token = (char *)json_object_get_string(response);
 
     free(response);
-    string_cleanup(&s);
+    buffer_cleanup(&s);
 
     return token;
 }
 
 char *pocket_auth(const char *key, const char *token)
 { 
-    struct string s;
+    struct buffer s;
     json_object *response;
     char* access_token;
 
-    string_init(&s);
+    buffer_init(&s);
 
     request(URL_AUTHORIZE, create_auth_petition(key, token), &s, 0);
 
@@ -137,26 +137,26 @@ char *pocket_auth(const char *key, const char *token)
     access_token = (char *)json_object_get_string(response);
 
     free(response);
-    string_cleanup(&s);
+    buffer_cleanup(&s);
 
     return access_token;
 }
 
 void pocket_add(const char *key, const char *token, const char* url) 
 {
-    struct string s;
+    struct buffer s;
 
-    string_init(&s);
+    buffer_init(&s);
     request(URL_ADD, add_url(key, token, url), &s, 0);
-    string_cleanup(&s);
+    buffer_cleanup(&s);
 }
 
 
 void pocket_get(const char *key, const char *token) 
 {
-    struct string s;
+    struct buffer s;
 
-    string_init(&s);
+    buffer_init(&s);
     request(URL_GET, get_auth(key, token), &s, 0);
-    string_cleanup(&s);
+    buffer_cleanup(&s);
 }
