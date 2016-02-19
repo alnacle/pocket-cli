@@ -21,7 +21,7 @@ int main(int argc, char **argv)
     getchar(); // Ugly!
 
     auth_token = pocket_get_token(key);
-    printf (" \nReceived token: %s\n", key);
+    printf (" \nReceived token: %s\n", auth_token);
 
     /* Redirect user to Pocket to continue authorization */
     printf("\n Enter the following URL and confirm the app (Enter when done)\n\n"
