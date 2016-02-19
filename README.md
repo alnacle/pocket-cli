@@ -12,7 +12,7 @@ Compilation has to be done in two steps. First, we must compile the _pocket-auth
 
     $ make 
 
-Once compiled, we are ready to generate the authentication tokens from _Pocket_ 
+Once compiled, the next step is to generate the authentication tokens from _Pocket_ 
 
     $ ./pocket-auth 
     $ Open your browser and go to: 
